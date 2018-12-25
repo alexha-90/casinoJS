@@ -1,0 +1,1 @@
+export const CONTENT_CONTAINER: number = 1024;
