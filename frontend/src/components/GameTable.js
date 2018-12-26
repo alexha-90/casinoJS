@@ -65,26 +65,43 @@ type Props = {
 };
 
 type State = {
-  newGame: boolean
+  newGame: boolean,
+  showPlayerFirstCard: boolean,
+  showPlayerSecondCard: boolean,
+  showDealerFirstCard: boolean,
+  showDealerSecondCard: boolean
 };
 
 class GameTable extends Component<Props, State> {
   constructor() {
     super();
     this.state = {
-      newGame: false
+      newGame: false,
+      showPlayerFirstCard: false,
+      showPlayerSecondCard: false,
+      showDealerFirstCard: false,
+      showDealerSecondCard: false
     };
   }
 
   onClickDealBtn = ():void => {
-    this.setState({ newGame: true });
+    this.setState({
+      newGame: true,
+      showPlayerFirstCard: true
+    });
   }
 
 
   render() {
     const {
       props: { number },
-      state: { newGame }
+      state: {
+        newGame,
+        showPlayerFirstCard,
+        showPlayerSecondCard,
+        showDealerFirstCard,
+        showDealerSecondCard
+      }
     } = this;
     return (
       <DesktopWrapper>
@@ -92,7 +109,8 @@ class GameTable extends Component<Props, State> {
           <DealerDiv>
             <RoleHeadline>Dealer</RoleHeadline>
             <DealerHand
-              newGame={newGame}
+              showDealerFirstCard={showDealerFirstCard}
+              showDealerSecondCard={showDealerSecondCard}
             />
           </DealerDiv>
           <TableHeadlineWrapperLG>
@@ -101,7 +119,8 @@ class GameTable extends Component<Props, State> {
           <PlayerDiv>
             <RoleHeadline>Player 1</RoleHeadline>
             <PlayerHand
-              newGame={newGame}
+              showPlayerFirstCard={showPlayerFirstCard}
+              showPlayerSecondCard={showPlayerSecondCard}
             />
             <CTAWrapper>
               <DealBtn

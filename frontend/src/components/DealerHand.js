@@ -7,7 +7,8 @@ import { DEALER_HAND_BG } from "../constants/UI/Palette"
 //==============================================================//
 
 type Props = {
-  newGame: boolean
+  showDealerFirstCard: boolean,
+  showDealerSecondCard: boolean
 };
 
 type State = {
@@ -23,15 +24,18 @@ class DealerHand extends Component<Props, State> {
   }
 
   render() {
-    const { newGame } = this.props;
+    const {
+      showDealerFirstCard,
+      showDealerSecondCard
+    } = this.props;
 
     return (
       <HandWrapper backgroundColor={DEALER_HAND_BG}>
         {/* left card */}
-        <Card suit={"X"} value={2} newGame={newGame}/>
+        <Card suit={"X"} value={2} show={showDealerFirstCard}/>
 
         {/* right card */}
-        <Card suit={"O"} value={10} newGame={newGame}/>
+        <Card suit={"O"} value={10} show={showDealerSecondCard}/>
       </HandWrapper>
     )
   }

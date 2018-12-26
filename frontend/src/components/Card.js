@@ -51,21 +51,19 @@ const Suit = styled.div``;
 
 type Props = {
   suit: string,
-  value: number
+  value: number,
+  newGame: boolean,
+  show: boolean
 }
 
 const Card = (props: Props) => {
-  const { suit, value, newGame } = props;
+  const {
+    suit,
+    value,
+    show,
+  } = props;
 
-  if (!newGame) {
-    return (
-      <Container>
-        <CasinoLogo>
-          Casino JS
-        </CasinoLogo>
-      </Container>
-    )
-  } else {
+  if (show) {
     return (
       <Container>
         <TopDetails>
@@ -77,6 +75,15 @@ const Card = (props: Props) => {
           <CardVal>{value}</CardVal>
           <Suit>{suit}</Suit>
         </BottomDetails>
+      </Container>
+    )
+  } else {
+    // initial state. Card has not been dealt yet. Show backside
+    return (
+      <Container>
+        <CasinoLogo>
+          Casino JS
+        </CasinoLogo>
       </Container>
     )
   }

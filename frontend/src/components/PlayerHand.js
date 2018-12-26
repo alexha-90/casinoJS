@@ -8,7 +8,8 @@ import { PLAYER_HAND_BG } from "../constants/UI/Palette"
 //==============================================================//
 
 type Props = {
-
+  showPlayerFirstCard: boolean,
+  showPlayerSecondCard: boolean
 };
 
 type State = {
@@ -24,15 +25,25 @@ class PlayerHand extends Component<Props, State> {
   }
 
   render() {
-    const { newGame } = this.props;
+    const {
+      showPlayerFirstCard,
+      showPlayerSecondCard
+    } = this.props;
 
     return (
       <HandWrapper backgroundColor={PLAYER_HAND_BG}>
-        {/* left card */}
-        <Card suit={"G"} value={"6"} newGame={newGame}/>
-
-        {/* right card */}
-        <Card suit={"M"} value={"7"} newGame={newGame}/>
+        {/** left card **/}
+        <Card
+          suit={"G"}
+          value={"6"}
+          show={showPlayerFirstCard}
+        />
+        {/** right card **/}
+        <Card
+          suit={"M"}
+          value={"7"}
+          show={showPlayerSecondCard}
+        />
       </HandWrapper>
     )
   }
