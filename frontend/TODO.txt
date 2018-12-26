@@ -1,1 +1,6 @@
 betting value
+reset card deck
+
+README notes:
+---------------------------------
+* import blocks separted by package.json, src imports, constants

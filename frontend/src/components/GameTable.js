@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import DealerHand from "./DealerHand";
 import PlayerHand from "./PlayerHand";
-import { mimicDeal } from "../util/index"
+import {getCardValueAndSuit, mimicDeal} from "../util/index"
 
 import {
   DesktopWrapper,
@@ -146,7 +146,8 @@ class GameTable extends Component<Props, State> {
                 Deal
               </DealBtn>
               <HitBtn
-                disabled={!playerActionReady}
+                onClick={getCardValueAndSuit}
+                // disabled={!playerActionReady}
               >
                 Hit
               </HitBtn>

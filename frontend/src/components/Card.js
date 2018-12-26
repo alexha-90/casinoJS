@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from "styled-components";
+
+import { getCardValueAndSuit } from "../util/index"
 
 import { CARD_MARGIN } from "../constants/UI/Spacing"
 import { WHITE } from "../constants/UI/Palette"
@@ -56,37 +58,67 @@ type Props = {
   show: boolean
 }
 
-const Card = (props: Props) => {
-  const {
-    suit,
-    value,
-    show,
-  } = props;
-
-  if (show) {
-    return (
-      <Container>
-        <TopDetails>
-          <CardVal>{value}</CardVal>
-          <Suit>{suit}</Suit>
-        </TopDetails>
-        <MiddleDetails>{suit}</MiddleDetails>
-        <BottomDetails>
-          <CardVal>{value}</CardVal>
-          <Suit>{suit}</Suit>
-        </BottomDetails>
-      </Container>
-    )
-  } else {
-    // initial state. Card has not been dealt yet. Show backside
-    return (
-      <Container>
-        <CasinoLogo>
-          Casino JS
-        </CasinoLogo>
-      </Container>
-    )
-  }
+type State = {
+  value: number | string,
+  suit: string
 };
+
+let tempCounterShouldBeReduxDeckLength = 0;
+
+class Card extends Component<Props, State> {
+  constructor() {
+    super();
+    this.state = {
+      value: null,
+      suit: null
+    }
+  }
+
+
+  componentDidUpdate() {
+    // FIXME: should compare props.deck.length
+    // should dispatch global action to compare value w/ dealer
+    if(this.props.show && tempCounterShouldBeReduxDeckLength < 4) {
+      const card = getCardValueAndSuit();
+      this.setState({
+        value: card.value,
+        suit: card.suit
+      })
+      tempCounterShouldBeReduxDeckLength++;
+    }
+  }
+
+  render() {
+    const {
+      suit,
+      value,
+      show,
+    } = this.props;
+    if (show) {
+      return (
+        <Container>
+          <TopDetails>
+            <CardVal>{this.state.value}</CardVal>
+            <Suit>{this.state.suit}</Suit>
+          </TopDetails>
+          <MiddleDetails>{this.state.suit}</MiddleDetails>
+          <BottomDetails>
+            <CardVal>{this.state.value}</CardVal>
+            <Suit>{this.state.suit}</Suit>
+          </BottomDetails>
+        </Container>
+      )
+    } else {
+      // initial state. Card has not been dealt yet. Show backside
+      return (
+        <Container>
+          <CasinoLogo>
+            Casino JS
+          </CasinoLogo>
+        </Container>
+      )
+    }
+  }
+}
 
 export default Card;
