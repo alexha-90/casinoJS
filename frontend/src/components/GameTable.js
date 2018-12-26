@@ -3,12 +3,14 @@ import styled from "styled-components";
 
 import DealerHand from "./DealerHand";
 import PlayerHand from "./PlayerHand";
+import { mimicDeal } from "../util/index"
 
 import {
   DesktopWrapper,
   TableWrapper
 } from "../constants/UI/Wrappers"
 import { CONTENT_CONTAINER } from "../constants/UI/Sizing"
+import { DEAL_DELAY_TIME } from "../constants/UI/index"
 //==============================================================//
 
 // FIXME: needs adjustment
@@ -60,12 +62,21 @@ const DealBtn = styled.button`
   cursor: ${props => props.disabled ? "not-allowed" : "pointer"};
 `;
 
+const HitBtn = styled.button`
+  cursor: ${props => props.disabled ? "not-allowed" : "pointer"};
+`;
+
+const StayBtn = styled.button`
+  cursor: ${props => props.disabled ? "not-allowed" : "pointer"};
+`;
+
 type Props = {
   number: number
 };
 
 type State = {
   newGame: boolean,
+  playerActionReady: boolean,
   showPlayerFirstCard: boolean,
   showPlayerSecondCard: boolean,
   showDealerFirstCard: boolean,
@@ -84,19 +95,24 @@ class GameTable extends Component<Props, State> {
     };
   }
 
-  onClickDealBtn = ():void => {
+  onClickDealBtn = async ():void => {
+    await mimicDeal(DEAL_DELAY_TIME);
+    this.setState({ newGame: true, showPlayerFirstCard: true });
+    await mimicDeal(DEAL_DELAY_TIME);
+    this.setState({ showDealerFirstCard: true });
+    await mimicDeal(DEAL_DELAY_TIME);
     this.setState({
-      newGame: true,
-      showPlayerFirstCard: true
+      showPlayerSecondCard: true,
+      playerActionReady: true
     });
   }
-
 
   render() {
     const {
       props: { number },
       state: {
         newGame,
+        playerActionReady,
         showPlayerFirstCard,
         showPlayerSecondCard,
         showDealerFirstCard,
@@ -129,8 +145,16 @@ class GameTable extends Component<Props, State> {
               >
                 Deal
               </DealBtn>
-              <button>Hit</button>
-              <button>Stay</button>
+              <HitBtn
+                disabled={!playerActionReady}
+              >
+                Hit
+              </HitBtn>
+              <StayBtn
+                disabled={!playerActionReady}
+              >
+                Stay
+              </StayBtn>
             </CTAWrapper>
           </PlayerDiv>
         </TableWrapper>

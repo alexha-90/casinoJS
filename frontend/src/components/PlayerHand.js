@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styled from "styled-components";
 
 import Card from "./Card";
 
@@ -12,15 +11,12 @@ type Props = {
   showPlayerSecondCard: boolean
 };
 
-type State = {
-
-};
+type State = {};
 
 class PlayerHand extends Component<Props, State> {
   constructor() {
     super();
     this.state = {
-
     };
   }
 

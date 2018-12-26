@@ -31,11 +31,19 @@ class DealerHand extends Component<Props, State> {
 
     return (
       <HandWrapper backgroundColor={DEALER_HAND_BG}>
-        {/* left card */}
-        <Card suit={"X"} value={2} show={showDealerFirstCard}/>
+        {/** left card **/}
+        <Card
+          suit={"X"}
+          value={2}
+          show={showDealerFirstCard}
+        />
 
-        {/* right card */}
-        <Card suit={"O"} value={10} show={showDealerSecondCard}/>
+        {/** right card **/}
+        <Card
+          suit={"O"}
+          value={10}
+          show={showDealerSecondCard}
+        />
       </HandWrapper>
     )
   }
