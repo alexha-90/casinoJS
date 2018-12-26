@@ -46,4 +46,5 @@ export const HandWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
+  background-color: ${props => props.backgroundColor};
 `;

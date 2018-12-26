@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Card from "./Card";
 
 import { HandWrapper } from "../constants/UI/Wrappers"
+import { DEALER_HAND_BG } from "../constants/UI/Palette"
 //==============================================================//
 
 class DealerHand extends Component {
@@ -15,7 +16,7 @@ class DealerHand extends Component {
 
   render() {
     return (
-      <HandWrapper>
+      <HandWrapper backgroundColor={DEALER_HAND_BG}>
         {/* left card */}
         <Card suit={"X"} value={2}/>
 

@@ -39,10 +39,13 @@ const PlayerDiv = styled.div`
   top: 40%;
   text-align: center;
   user-select: none;
-  background-color: green;
   width: 240px;
   height: 160px;
   margin: 0 auto;
+`;
+
+const RoleHeadline = styled.div`
+  margin-bottom: 5px;
 `;
 
 const CTAWrapper = styled.div`
@@ -63,12 +66,14 @@ const GameTable = (props: Props) => {
     <DesktopWrapper>
       <TableWrapper>
         <DealerDiv>
+          <RoleHeadline>Dealer</RoleHeadline>
           <DealerHand />
         </DealerDiv>
         <TableHeadlineWrapperLG>
           <h1>Table {number}</h1>
         </TableHeadlineWrapperLG>
         <PlayerDiv>
+          <RoleHeadline>Player 1</RoleHeadline>
           <PlayerHand />
           <CTAWrapper>
             <button>Deal</button>
