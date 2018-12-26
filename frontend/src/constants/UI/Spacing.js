@@ -1,0 +1,1 @@
+export const CARD_MARGIN: number = 5;

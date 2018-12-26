@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 import { CONTENT_CONTAINER } from "./Sizing"
+import { WHITE } from "./Palette"
+import { CARD_MARGIN} from "./Spacing"
 //==============================================================//
 
 export const FullScreenDiv = styled.div`
@@ -37,4 +39,12 @@ export const TableHeadlineWrapper = styled.div`
   transform: translateY(-50%);
   text-align: center;
   user-select: none;
+`;
+
+export const CardWrapper = styled.div`
+  margin: ${CARD_MARGIN}px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  background-color: ${WHITE};
+  flex: 1;
 `;
