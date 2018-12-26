@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 
-import Table from "../components/Table";
+import LobbyTable from "./LobbyTable";
+import GameTable from "./GameTable";
 
+import { DesktopWrapper } from "../constants/UI/Wrappers"
 import { CONTENT_CONTAINER } from "../constants/UI/Sizing"
 //==============================================================//
 
-const DesktopContainer = styled.section`
-  width: ${CONTENT_CONTAINER}px;
-  height: 80vh;
-  display: flex;
-  flex-direction: column;
-  margin: 10vh auto;
-`;
-
-const Row = styled.div`
+const LobbyRow = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: row;
@@ -32,29 +26,53 @@ class Lobby extends Component {
   constructor() {
     super();
     this.state = {
-
+      activeLobbyTable: null
     };
   }
 
+  onUserSelectLobbyTable = (num: number): void => {
+    this.setState({ activeLobbyTable: num})
+  }
+
   render() {
+    if (this.state.activeLobbyTable > 0) {
+      return (
+        <GameTable
+          number={this.state.activeLobbyTable}
+        />
+      )
+    }
+
     return (
-      <DesktopContainer>
-        <Row order={1}>
+      <DesktopWrapper>
+        <LobbyRow order={1}>
           <EmptyDivider />
-          <Table number={1}/>
+          <LobbyTable
+            number={1}
+            onClick={() => this.onUserSelectLobbyTable(1)}
+          />
           <EmptyDivider />
-        </Row>
-        <Row order={2} middle={true}>
-          <Table number={2}/>
+        </LobbyRow>
+        <LobbyRow order={2} middle={true}>
+          <LobbyTable
+            number={2}
+            onClick={() => this.onUserSelectLobbyTable(2)}
+          />
           <EmptyDivider />
-          <Table number={3}/>
-        </Row>
-        <Row order={3}>
+          <LobbyTable
+            number={3}
+            onClick={() => this.onUserSelectLobbyTable(3)}
+          />
+        </LobbyRow>
+        <LobbyRow order={3}>
           <EmptyDivider />
-          <Table number={4}/>
+          <LobbyTable
+            number={4}
+            onClick={() => this.onUserSelectLobbyTable(4)}
+          />
           <EmptyDivider />
-        </Row>
-      </DesktopContainer>
+        </LobbyRow>
+      </DesktopWrapper>
     )
   }
 }

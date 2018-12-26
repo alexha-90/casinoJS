@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from "styled-components";
 import { Redirect } from "react-router-dom";
 
-import { FullScreenDiv } from "../constants/UI/Containers"
+import { FullScreenDiv } from "../constants/UI/Wrappers"
 import { LOBBY } from "../constants/UI/Paths"
 //==============================================================//
 
