@@ -13,6 +13,12 @@ const Container = styled.div`
   flex: 1;
 `;
 
+const CasinoLogo = styled.div`
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+`
+
 const TopDetails = styled.div`
   flex: 1;
   height: 30%;
@@ -49,20 +55,31 @@ type Props = {
 }
 
 const Card = (props: Props) => {
-  const { suit, value } = props;
-  return (
-    <Container>
-      <TopDetails>
-        <CardVal>{value}</CardVal>
-        <Suit>{suit}</Suit>
-      </TopDetails>
-      <MiddleDetails>{suit}</MiddleDetails>
-      <BottomDetails>
-        <CardVal>{value}</CardVal>
-        <Suit>{suit}</Suit>
-      </BottomDetails>
-    </Container>
-  )
+  const { suit, value, newGame } = props;
+
+  if (!newGame) {
+    return (
+      <Container>
+        <CasinoLogo>
+          Casino JS
+        </CasinoLogo>
+      </Container>
+    )
+  } else {
+    return (
+      <Container>
+        <TopDetails>
+          <CardVal>{value}</CardVal>
+          <Suit>{suit}</Suit>
+        </TopDetails>
+        <MiddleDetails>{suit}</MiddleDetails>
+        <BottomDetails>
+          <CardVal>{value}</CardVal>
+          <Suit>{suit}</Suit>
+        </BottomDetails>
+      </Container>
+    )
+  }
 };
 
 export default Card;

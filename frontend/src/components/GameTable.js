@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from "styled-components";
 
 import DealerHand from "./DealerHand";
@@ -10,10 +10,6 @@ import {
 } from "../constants/UI/Wrappers"
 import { CONTENT_CONTAINER } from "../constants/UI/Sizing"
 //==============================================================//
-
-type Props = {
-  number: number
-}
 
 // FIXME: needs adjustment
 const DealerDiv = styled.div`
@@ -60,30 +56,68 @@ const CTAWrapper = styled.div`
   }
 `;
 
-const GameTable = (props: Props) => {
-  const { number } = props;
-  return (
-    <DesktopWrapper>
-      <TableWrapper>
-        <DealerDiv>
-          <RoleHeadline>Dealer</RoleHeadline>
-          <DealerHand />
-        </DealerDiv>
-        <TableHeadlineWrapperLG>
-          <h1>Table {number}</h1>
-        </TableHeadlineWrapperLG>
-        <PlayerDiv>
-          <RoleHeadline>Player 1</RoleHeadline>
-          <PlayerHand />
-          <CTAWrapper>
-            <button>Deal</button>
-            <button>Hit</button>
-            <button>Stay</button>
-          </CTAWrapper>
-        </PlayerDiv>
-      </TableWrapper>
-    </DesktopWrapper>
-  )
+const DealBtn = styled.button`
+  cursor: ${props => props.disabled ? "not-allowed" : "pointer"};
+`;
+
+type Props = {
+  number: number
+};
+
+type State = {
+  newGame: boolean
+};
+
+class GameTable extends Component<Props, State> {
+  constructor() {
+    super();
+    this.state = {
+      newGame: false
+    };
+  }
+
+  onClickDealBtn = ():void => {
+    this.setState({ newGame: true });
+  }
+
+
+  render() {
+    const {
+      props: { number },
+      state: { newGame }
+    } = this;
+    return (
+      <DesktopWrapper>
+        <TableWrapper>
+          <DealerDiv>
+            <RoleHeadline>Dealer</RoleHeadline>
+            <DealerHand
+              newGame={newGame}
+            />
+          </DealerDiv>
+          <TableHeadlineWrapperLG>
+            <h1>Table {number}</h1>
+          </TableHeadlineWrapperLG>
+          <PlayerDiv>
+            <RoleHeadline>Player 1</RoleHeadline>
+            <PlayerHand
+              newGame={newGame}
+            />
+            <CTAWrapper>
+              <DealBtn
+                disabled={newGame}
+                onClick={this.onClickDealBtn}
+              >
+                Deal
+              </DealBtn>
+              <button>Hit</button>
+              <button>Stay</button>
+            </CTAWrapper>
+          </PlayerDiv>
+        </TableWrapper>
+      </DesktopWrapper>
+    )
+  }
 }
 
 export default GameTable;
