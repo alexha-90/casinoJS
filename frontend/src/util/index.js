@@ -17,9 +17,10 @@ export const getCardValueAndSuit = () => {
   const randIndex = Math.floor(Math.random() * 52);
   const randCard = currDeck[randIndex];
 
-  const value = parseInt(randCard.slice(1)); // separate suit from value
+  let value = parseInt(randCard.slice(1)); // separate suit from value
   let weight;
   if (value === 14) {
+    value = "A"
     weight = "wild_ace";
   } else if (value >= 10) {
     weight = 10;

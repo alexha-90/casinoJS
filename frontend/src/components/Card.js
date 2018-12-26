@@ -59,32 +59,17 @@ type Props = {
 }
 
 type State = {
-  value: number | string,
-  suit: string
+  // value: number | string,
+  // suit: string
 };
 
-let tempCounterShouldBeReduxDeckLength = 0;
 
 class Card extends Component<Props, State> {
   constructor() {
     super();
     this.state = {
-      value: null,
-      suit: null
-    }
-  }
-
-
-  componentDidUpdate() {
-    // FIXME: should compare props.deck.length
-    // should dispatch global action to compare value w/ dealer
-    if(this.props.show && tempCounterShouldBeReduxDeckLength < 4) {
-      const card = getCardValueAndSuit();
-      this.setState({
-        value: card.value,
-        suit: card.suit
-      })
-      tempCounterShouldBeReduxDeckLength++;
+      // value: null,
+      // suit: null
     }
   }
 
@@ -98,13 +83,13 @@ class Card extends Component<Props, State> {
       return (
         <Container>
           <TopDetails>
-            <CardVal>{this.state.value}</CardVal>
-            <Suit>{this.state.suit}</Suit>
+            <CardVal>{value}</CardVal>
+            <Suit>{suit}</Suit>
           </TopDetails>
-          <MiddleDetails>{this.state.suit}</MiddleDetails>
+          <MiddleDetails>{suit}</MiddleDetails>
           <BottomDetails>
-            <CardVal>{this.state.value}</CardVal>
-            <Suit>{this.state.suit}</Suit>
+            <CardVal>{value}</CardVal>
+            <Suit>{suit}</Suit>
           </BottomDetails>
         </Container>
       )
