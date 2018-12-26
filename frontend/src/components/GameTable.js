@@ -6,9 +6,9 @@ import PlayerHand from "./PlayerHand";
 
 import {
   DesktopWrapper,
-  TableWrapper,
-  TableHeadlineWrapper,
+  TableWrapper
 } from "../constants/UI/Wrappers"
+import { CONTENT_CONTAINER } from "../constants/UI/Sizing"
 //==============================================================//
 
 type Props = {
@@ -26,6 +26,14 @@ const DealerDiv = styled.div`
   margin: 0 auto;
 `;
 
+const TableHeadlineWrapperLG = styled.div`
+  position: absolute;
+  width: ${CONTENT_CONTAINER}px;
+  top: 40%;
+  text-align: center;
+  user-select: none;
+`;
+
 const PlayerDiv = styled.div`
   position: relative;
   top: 40%;
@@ -37,6 +45,18 @@ const PlayerDiv = styled.div`
   margin: 0 auto;
 `;
 
+const CTAWrapper = styled.div`
+  width: 100%;
+  margin-top: 10px;
+  background-color: red;
+  box-sizing: border-box;
+  display: flex;
+  > button {
+    flex: 1;
+    justify-content: space-between;
+  }
+`;
+
 const GameTable = (props: Props) => {
   const { number } = props;
   return (
@@ -45,11 +65,16 @@ const GameTable = (props: Props) => {
         <DealerDiv>
           <DealerHand />
         </DealerDiv>
-        <TableHeadlineWrapper>
+        <TableHeadlineWrapperLG>
           <h1>Table {number}</h1>
-        </TableHeadlineWrapper>
+        </TableHeadlineWrapperLG>
         <PlayerDiv>
           <PlayerHand />
+          <CTAWrapper>
+            <button>Deal</button>
+            <button>Hit</button>
+            <button>Stay</button>
+          </CTAWrapper>
         </PlayerDiv>
       </TableWrapper>
     </DesktopWrapper>

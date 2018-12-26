@@ -1,8 +1,17 @@
 import React from 'react';
 import styled from "styled-components";
 
-import { CardWrapper } from "../constants/UI/Wrappers"
+import { CARD_MARGIN } from "../constants/UI/Spacing"
+import { WHITE } from "../constants/UI/Palette"
 //==============================================================//
+
+const Container = styled.div`
+  margin: ${CARD_MARGIN}px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  background-color: ${WHITE};
+  flex: 1;
+`;
 
 const TopDetails = styled.div`
   flex: 1;
@@ -42,7 +51,7 @@ type Props = {
 const Card = (props: Props) => {
   const { suit, value } = props;
   return (
-    <CardWrapper>
+    <Container>
       <TopDetails>
         <CardVal>{value}</CardVal>
         <Suit>{suit}</Suit>
@@ -52,7 +61,7 @@ const Card = (props: Props) => {
         <CardVal>{value}</CardVal>
         <Suit>{suit}</Suit>
       </BottomDetails>
-    </CardWrapper>
+    </Container>
   )
 };
 
