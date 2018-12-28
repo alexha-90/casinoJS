@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 
-import { getCardValueAndSuit } from "../util/index"
-
 import { CARD_MARGIN } from "../constants/UI/Spacing"
 import { WHITE } from "../constants/UI/Palette"
 //==============================================================//

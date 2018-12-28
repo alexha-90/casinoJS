@@ -1,24 +1,11 @@
 // NOTE: hard-coded deck used in favor of iterative solution
 /**
- *  KEY:
- *    value =
- *      2 through 10, face card value
- *      11 = jack
- *      12 = queen
- *      13 = king
- *      14 = ace
- *
- *    suit =
- *      H = hearts
- *      D = diamonds
- *      S = spades
- *      C = clubs
+ *  suit =
+ *    H = hearts
+ *    D = diamonds
+ *    S = spades
+ *    C = clubs
  **/
-
-export const HEARTS = "hearts";
-export const DIAMONDS = "diamonds";
-export const SPADES = "spades";
-export const CLUBS = "clubs";
 
 export const DECK: Array<string> = [
   "H2",
@@ -30,10 +17,10 @@ export const DECK: Array<string> = [
   "H8",
   "H9",
   "H10",
-  "H11",
-  "H12",
-  "H13",
-  "H14",
+  "HK",
+  "HQ",
+  "HK",
+  "HA",
   "D2",
   "D3",
   "D4",
@@ -43,10 +30,10 @@ export const DECK: Array<string> = [
   "D8",
   "D9",
   "D10",
-  "D11",
-  "D12",
-  "D13",
-  "D14",
+  "DJ",
+  "DQ",
+  "DK",
+  "DA",
   "S2",
   "S3",
   "S4",
@@ -56,10 +43,10 @@ export const DECK: Array<string> = [
   "S8",
   "S9",
   "S10",
-  "S11",
-  "S12",
-  "S13",
-  "S14",
+  "SJ",
+  "SQ",
+  "SK",
+  "SA",
   "C2",
   "C3",
   "C4",
@@ -69,8 +56,8 @@ export const DECK: Array<string> = [
   "C8",
   "C9",
   "C10",
-  "C11",
-  "C12",
-  "C13",
-  "C14"
+  "CJ",
+  "CQ",
+  "CK",
+  "CA"
 ];

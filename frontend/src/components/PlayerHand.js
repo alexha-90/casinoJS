@@ -13,13 +13,16 @@ type Props = {
 };
 
 type State = {
+  totalSum: number,
   firstCard: {
     value: any, // FIXME: type check
-    suit: any
+    suit: any,
+    weight: any
   },
   secondCard: {
     value: any,
-    suit: any
+    suit: any,
+    weiht: any
   }
 };
 
@@ -27,13 +30,16 @@ class PlayerHand extends Component<Props, State> {
   constructor() {
     super();
     this.state = {
+      totalSum: 0,
       firstCard: {
         value: null,
-        suit: null
+        suit: null,
+        weight: null,
       },
       secondCard: {
         value: null,
-        suit: null
+        suit: null,
+        weight: null,
       }
     };
   }
@@ -47,21 +53,14 @@ class PlayerHand extends Component<Props, State> {
     // should dispatch global action to compare value w/ dealer
     if (showPlayerFirstCard && !firstCard.value) {
       const card = getCardValueAndSuit();
-      this.setState({
-        firstCard: {
-          value: card.value,
-          suit: card.suit
-        }
-      })
+      this.setState({ firstCard: {...card} })
     }
 
     if (showPlayerSecondCard & !secondCard.value) {
       const card = getCardValueAndSuit();
       this.setState({
-        secondCard: {
-          value: card.value,
-          suit: card.suit
-        }
+        totalSum: firstCard.weight + card.weight,
+        secondCard: { ...card}
       })
     }
   }
@@ -70,11 +69,12 @@ class PlayerHand extends Component<Props, State> {
   render() {
     const {
       props: { showPlayerFirstCard, showPlayerSecondCard},
-      state: { firstCard, secondCard }
+      state: { firstCard, secondCard, totalSum }
     } = this;
 
     return (
       <HandWrapper backgroundColor={PLAYER_HAND_BG}>
+        {totalSum > 11 ? <div>Bust! Over 11</div> : ""}
         {/** left card **/}
         <Card
           suit={firstCard.suit}

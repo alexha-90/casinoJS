@@ -146,7 +146,7 @@ class GameTable extends Component<Props, State> {
                 Deal
               </DealBtn>
               <HitBtn
-                onClick={getCardValueAndSuit}
+                onClick={() => console.log(getCardValueAndSuit())}
                 // disabled={!playerActionReady}
               >
                 Hit
